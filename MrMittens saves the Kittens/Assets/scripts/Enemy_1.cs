@@ -23,6 +23,12 @@ public class Enemy_1 : MonoBehaviour {
 			Destroy(r);
 			DestroyObject (gameObject);
 		}
+		// Destroy Ally 
+		if (go.layer == 9) {
+				
+			Renderer r = go.GetComponent<Renderer>();
+			Destroy(r);
+		}
 	}
 		
 }
