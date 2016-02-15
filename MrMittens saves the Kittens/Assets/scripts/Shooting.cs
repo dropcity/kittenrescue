@@ -21,11 +21,12 @@ public class Shooting : MonoBehaviour {
 		while(true){
 
 			clone = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+			clone.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 10, ForceMode2D.Impulse);
 			yield return new WaitForSeconds(shootingInterval);
 		}
 	}
 
-	void OnTriggerEnter(Collider t){
+	void OnTriggerEnter2D(Collider2D t){
 		Destroy (clone);
 	}
 

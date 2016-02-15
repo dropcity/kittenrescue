@@ -17,7 +17,7 @@ public class Enemy_2 : MonoBehaviour {
 		transform.Translate (0,speed*-1,0, Space.World);
 	}
 	//If collides with a bullet, both should be destroyed
-	void OnCollisionEnter(Collision c)
+	void OnCollisionEnter2D(Collision2D c)
 	{
 		GameObject go = c.gameObject;
 		if (go.layer == 11) {

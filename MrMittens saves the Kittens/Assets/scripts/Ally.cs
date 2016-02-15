@@ -27,9 +27,7 @@ public class Ally : MonoBehaviour {
 		//Raycasting 
 			if (Input.GetMouseButtonUp (0)) {
 
-				Vector3 mousePos = Input.mousePosition;
-
-				Ray r = Camera.main.ScreenPointToRay (mousePos);
+				Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
 				RaycastHit hit;
 
 				if (Physics.Raycast (r, out hit, float.MaxValue, lm.value)) {
@@ -37,11 +35,10 @@ public class Ally : MonoBehaviour {
 					if(lm.value != 8 && lm.value != 10 && lm.value != 9){
 
 						//TODO: fix position
-						clone = Instantiate (ally, mousePos, allyTransform.rotation) as GameObject;
+						clone = Instantiate (ally, hit.point, allyTransform.rotation) as GameObject;
 						quantity_players++;
 						c = StartCoroutine (DeleteAlly(clone));
 
-						Debug.Log (mousePos);
 					}
 				
 				}
