@@ -14,7 +14,7 @@ public class Enemy_1 : MonoBehaviour {
 		transform.Translate (0,-1*speed,0, Space.World);
 	}
 	//If collides with a bullet, both should be destroyed
-	void OnCollisionEnter(Collision c)
+	void OnCollisionEnter2D(Collision2D c)
 	{
 		GameObject go = c.gameObject;
 		if (go.layer == 11) {
@@ -22,6 +22,12 @@ public class Enemy_1 : MonoBehaviour {
 			//Destroy components
 			Destroy(r);
 			DestroyObject (gameObject);
+		}
+		// Destroy Ally 
+		if (go.layer == 9) {
+				
+			Renderer r = go.GetComponent<Renderer>();
+			Destroy(r);
 		}
 	}
 		
