@@ -48,6 +48,7 @@
      <Compile Include="Assets\scripts\Ally.cs" />
      <Compile Include="Assets\scripts\Enemy_1.cs" />
      <Compile Include="Assets\scripts\Enemy_2.cs" />
+     <Compile Include="Assets\scripts\Instantiate_Enmeies.cs" />
      <Compile Include="Assets\scripts\NewBehaviourScript.cs" />
      <Compile Include="Assets\scripts\Shooting.cs" />
      <Compile Include="Assets\scripts\Start_Game.cs" />
