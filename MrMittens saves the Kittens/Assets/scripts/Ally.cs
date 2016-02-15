@@ -4,7 +4,6 @@ using System.Collections;
 public class Ally : MonoBehaviour {
 
 	public int shooting_interval;
-	public LayerMask lm;
 	public GameObject ally;
 	public Transform allyTransform;
 
@@ -30,11 +29,11 @@ public class Ally : MonoBehaviour {
 				Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
 				RaycastHit hit;
 
-				if (Physics.Raycast (r, out hit, float.MaxValue, lm.value)) {
+				if (Physics.Raycast (r, out hit, float.MaxValue)) {
+					//Debug.Log ("hit: " + hit.collider.name );
 
-					if(lm.value != 8 && lm.value != 10 && lm.value != 9){
+					if(hit.collider.name == "Ground" ){
 
-						//TODO: fix position
 						clone = Instantiate (ally, hit.point, allyTransform.rotation) as GameObject;
 						quantity_players++;
 						c = StartCoroutine (DeleteAlly(clone));

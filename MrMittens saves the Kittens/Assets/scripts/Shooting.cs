@@ -21,7 +21,8 @@ public class Shooting : MonoBehaviour {
 		while(true){
 
 			clone = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
-			clone.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 10, ForceMode2D.Impulse);
+			//clone.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 10, ForceMode2D.Impulse);
+			clone.GetComponent<Rigidbody> ().velocity = transform.TransformDirection (new Vector3 (0,10, 0));
 			yield return new WaitForSeconds(shootingInterval);
 		}
 	}
