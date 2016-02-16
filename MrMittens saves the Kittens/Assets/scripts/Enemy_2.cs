@@ -14,10 +14,10 @@ public class Enemy_2 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (0,speed*-1,0, Space.World);
+		transform.Translate (0, 0, -1 * speed, Space.World);
 	}
 	//If collides with a bullet, both should be destroyed
-	void OnCollisionEnter2D(Collision2D c)
+	void OnCollisionEnter(Collision c)
 	{
 		GameObject go = c.gameObject;
 		if (go.layer == 11) {

@@ -1,56 +1,96 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ally : MonoBehaviour {
+public class Ally : MonoBehaviour
+{
 
-	public int shooting_interval;
-	public GameObject ally;
-	public Transform allyTransform;
+    //first ally
+    public GameObject ally_a;
+    public Transform allyTransform_a;
 
-	private int quantity_players;
-	private GameObject clone;
-	private Coroutine c;
-	private float lifespan_ally;
-	// Use this for initialization
-	void Start () {
-		
-		quantity_players = 0;
-		lifespan_ally = 10.0f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    //second ally
+    public GameObject ally_b;
+    public Transform allyTransform_b;
 
-		//only 3 allies are allowed at once
-		if(quantity_players < 3){
-		//Raycasting 
-			if (Input.GetMouseButtonUp (0)) {
+    //first ally 
+    private GameObject clone;
+    //second ally
+    //private GameObject clone_b;
 
-				Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
-				RaycastHit hit;
+    private int quantity_player_a;
+    private int quantity_player_b;
+    private Coroutine c;
+    private float lifespan_ally;
+    private bool switchAlly;
 
-				if (Physics.Raycast (r, out hit, float.MaxValue)) {
-					//Debug.Log ("hit: " + hit.collider.name );
+    // Use this for initialization
+    void Start()
+    {
 
-					if(hit.collider.name == "Ground" ){
+        quantity_player_a = quantity_player_b = 0;
+        lifespan_ally = 10.0f;
+        switchAlly = true;
+    }
 
-						clone = Instantiate (ally, hit.point, allyTransform.rotation) as GameObject;
-						quantity_players++;
-						c = StartCoroutine (DeleteAlly(clone));
+    // Update is called once per frame
+    void Update()
+    {
 
-					}
-				
-				}
-			}
-		}
-	}
+        if (Input.GetMouseButtonUp(1))
+        {
 
-	IEnumerator DeleteAlly(GameObject clone){
-	
-		yield return new WaitForSeconds (lifespan_ally);
+            switchAlly = !switchAlly;
+        }
+        //Raycasting 
+        if (Input.GetMouseButtonUp(0))
+        {
 
-			DestroyObject (clone);
-			quantity_players--;
-	}
-		
+            Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(r, out hit, float.MaxValue))
+            {
+                //Debug.Log ("hit: " + hit.collider.name );
+
+                if (hit.collider.name == "Ground")
+                {
+
+                    if (switchAlly == true && quantity_player_a < 3)
+                    {
+
+                        clone = Instantiate(ally_a, hit.point, allyTransform_a.rotation) as GameObject;
+                        quantity_player_a++;
+                        c = StartCoroutine(DeleteAlly(clone));
+
+                    }
+                    else if (switchAlly == false && quantity_player_b < 3)
+                    {
+
+                        clone = Instantiate(ally_b, hit.point, allyTransform_b.rotation) as GameObject;
+                        quantity_player_b++;
+                        c = StartCoroutine(DeleteAlly(clone));
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    IEnumerator DeleteAlly(GameObject clone)
+    {
+
+        yield return new WaitForSeconds(lifespan_ally);
+
+        DestroyObject(clone);
+        if (clone.name == ally_a.name + "(Clone)")
+        {
+            quantity_player_a--;
+        }
+        else {
+            quantity_player_b--;
+        }
+
+    }
+
 }
