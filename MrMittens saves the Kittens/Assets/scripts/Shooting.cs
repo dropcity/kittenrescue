@@ -17,8 +17,9 @@ public class Shooting : MonoBehaviour {
 	}
 
 	void Update(){
-		//Debug.Log ("Bullet: " + clone.transform.position);
-	}
+        if (transform.position.y < 0f)
+            Destroy(gameObject);
+    }
 
 	IEnumerator ShootInterval(){
 

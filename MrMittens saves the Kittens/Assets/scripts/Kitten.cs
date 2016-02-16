@@ -9,8 +9,9 @@ public class Kitten : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (transform.position.y < 0f)
+            Destroy(gameObject);
+    }
 
     void OnCollisionEnter(Collider c)
     {

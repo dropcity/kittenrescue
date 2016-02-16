@@ -7,38 +7,47 @@ public class Enemy_2 : MonoBehaviour {
 	//After first shot, duplicates its velocity
 	public float speed;
 	int shot;
+    GameObject mainCam;
 	// Use this for initialization
 	void Start () {
 		shot = 0;
-	}
+        mainCam = GameObject.Find("Main Camera");
+        Debug.Log(mainCam);
+    }
 
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (0, 0, -1 * speed, Space.World);
+        if (transform.position.y < 0f)
+            Destroy(gameObject);
+        transform.Translate (0, 0, -1 * speed, Space.World);
 	}
 	//If collides with a bullet, both should be destroyed
 	void OnCollisionEnter(Collision c)
 	{
 		GameObject go = c.gameObject;
 		if (go.layer == 11) {
-			Renderer r = go.GetComponent<Renderer> ();
-			if (shot == 1) {				
-				//Destroy components
-				Destroy (r);
-				DestroyObject (gameObject);
-			} 
+			if (shot > 0) {
+                //Destroy components
+               
+				Destroy (gameObject);
+                mainCam.GetComponent<Logic>().incScore(2);
+            } 
 			else {
-				Destroy (r);
-				speed = speed * 2;
+                speed = speed * 2;
 				shot++;
-			}
-		}
-		// Destroy Ally 
-		if (go.layer == 9) {
-
-			Renderer r = go.GetComponent<Renderer>();
-			Destroy(r);
-		}
-	}
+            }
+            Destroy(go);
+        }
+        else if (go.layer == 9)  //Destroy Ally
+        {
+            Destroy(go);
+        }
+        else if (go.layer == 10) //Kittens
+        {
+            mainCam.GetComponent<Logic>().decScore(2);
+            mainCam.GetComponent<Logic>().lives--;
+            Destroy(go);
+        }
+    }
 
 }
