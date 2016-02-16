@@ -23,30 +23,37 @@ public class Enemy : MonoBehaviour {
 		Debug.Log ("Collision with enemy shots: " + shot);
 
 		GameObject collider = c.gameObject;
-		Renderer r_collider = collider.GetComponent<Renderer> ();
-		GameObject clone = GameObject.Find ("Enemy(Clone)");
-		Renderer r_clone = clone.GetComponent<Renderer> ();
 
-		if (collider.layer == 11) {
-			Debug.Log ("Collision with bullet");
-			if (shot == maxShots) {
+		if (collider != null) {
 
-				Debug.Log ("Enemy should get destroyed shot = " + shot);
-				Destroy (r_clone);
-				Destroy (clone);
-			} 
-			else {
+			Renderer r_collider = collider.GetComponent<Renderer> ();
+			GameObject clone = GameObject.Find ("Enemy(Clone)");
+			Renderer r_clone = clone.GetComponent<Renderer> ();
+
+
+			if (collider.layer == 11) {
+				Debug.Log ("Collision with bullet");
+				if (shot == maxShots) {
+
+					Debug.Log ("Enemy should get destroyed shot = " + shot);
+					Destroy (r_clone);
+					Destroy (clone);
+					shot = 0;
+				} else {
+					
+					Destroy (r_collider);
+					Destroy (collider);
+
+					//speed = speed * 2;
+					shot++;
+				}
+			}
+			// Destroy Ally 
+			if (collider.layer == 9) {
+
 				Destroy (r_collider);
 				Destroy (collider);
-				//speed = speed * 2;
-				shot++;
 			}
-		}
-		// Destroy Ally 
-		if (collider.layer == 9) {
-
-			Destroy(r_collider);
-			Destroy (collider);
 		}
 	}
 
