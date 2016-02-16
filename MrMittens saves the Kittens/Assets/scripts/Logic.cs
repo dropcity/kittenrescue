@@ -10,7 +10,7 @@ public class Logic : MonoBehaviour
     Vector3[] SPs = new Vector3[8];
     GameObject[] enemies = new GameObject[2];
     public GameObject Enemy1, Enemy2;
-
+    
     // Use this for initialization
     void Start()
     {
@@ -24,6 +24,7 @@ public class Logic : MonoBehaviour
         SPs[7] = new Vector3(14.27f, 1.2f, 10.75f);
         enemies[0] = Enemy1;
         enemies[1] = Enemy2;
+      
 
         StartCoroutine(SampleCoroutine());
     }
@@ -49,7 +50,10 @@ public class Logic : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 100, 50), "Score: " + score);
-        GUI.Label(new Rect(400, 0, 100, 50), "Lives: " + lives);
+        GUI.Label(new Rect(430, 0, 150, 50), "Mr. Mitten's Lives: " + (3-gameObject.GetComponent<Ally>().quantity_player_a));
+        GUI.Label(new Rect(450, 20, 150, 50), "Toby's Lives: " + (3-gameObject.GetComponent<Ally>().quantity_player_b));
+
+
     }
 
     IEnumerator SampleCoroutine()

@@ -17,8 +17,8 @@ public class Ally : MonoBehaviour
     //second ally
     //private GameObject clone_b;
 
-    private int quantity_player_a;
-    private int quantity_player_b;
+    public int quantity_player_a;
+    public int quantity_player_b;
     private Coroutine c;
     private float lifespan_ally;
     private bool switchAlly;

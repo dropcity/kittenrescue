@@ -35,9 +35,7 @@ public class Enemy_1 : MonoBehaviour {
         }
 		// Destroy Ally 
 
-		if (go.layer == 9) {
-			Renderer r = go.GetComponent<Renderer>();
-			Destroy(r);
+		if (go.layer == 9) { 
 			Destroy (go);
 		}
         if (go.layer == 10) //Kittens
