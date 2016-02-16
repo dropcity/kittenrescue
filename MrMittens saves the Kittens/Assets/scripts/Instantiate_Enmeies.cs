@@ -10,13 +10,15 @@ public class Instantiate_Enmeies : MonoBehaviour {
 	private Coroutine c;
 	private GameObject clone;
 	// Use this for initialization
+
 	void Start () {
 		c = StartCoroutine (CreateEnemy ());
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	IEnumerator CreateEnemy(){

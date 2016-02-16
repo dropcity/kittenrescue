@@ -17,7 +17,7 @@ public class Shooting : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log ("Bullet: " + clone.transform.position);
+		
 	}
 
 	IEnumerator ShootInterval(){
@@ -30,11 +30,6 @@ public class Shooting : MonoBehaviour {
 			//clone.transform.Translate (Vector3.forward);
 			yield return new WaitForSeconds(shootingInterval);
 		}
-	}
-
-	void OnTriggerEnter(Collider t){
-		Debug.Log ("triggerd");
-		Destroy (clone);
 	}
 
 }

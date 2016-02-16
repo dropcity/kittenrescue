@@ -71,7 +71,9 @@ public class Ally : MonoBehaviour {
 	
 		yield return new WaitForSeconds (lifespan_ally);
 
-		DestroyObject (clone);
+		Destroy (clone.GetComponent<Renderer> ());
+		Destroy(clone);
+
 		if (clone.name == ally_a.name+"(Clone)") {
 			quantity_player_a--;
 		} else {
