@@ -13,12 +13,14 @@ public class Kitten : MonoBehaviour {
             Destroy(gameObject);
     }
 
-    void OnCollisionEnter(Collider c)
+	/*
+    void OnCollisionEnter(Collision c)
     {
         GameObject catLady = c.gameObject;
         mainCam.GetComponent<Logic>().decScore(2);
         mainCam.GetComponent<Logic>().lives--;
         Destroy(catLady);
     }
+    */
 }
 

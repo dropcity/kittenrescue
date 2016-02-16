@@ -19,18 +19,20 @@ public class Enemy_2 : MonoBehaviour {
 	void Update () {
         if (transform.position.y < 0f)
             Destroy(gameObject);
-        transform.Translate (0, 0, -1 * speed, Space.World);
+		transform.Translate (0, 0, -1 * speed * Time.deltaTime, Space.World);
 	}
 	//If collides with a bullet, both should be destroyed
 	void OnCollisionEnter(Collision c)
 	{
 		GameObject go = c.gameObject;
 		if (go.layer == 11) {
-			if (shot > 0) {
+			if (shot > 1) {
                 //Destroy components
                
 				Destroy (gameObject);
                 mainCam.GetComponent<Logic>().incScore(2);
+
+				shot = 0;
             } 
 			else {
                 speed = speed * 2;

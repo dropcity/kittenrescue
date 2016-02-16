@@ -38,9 +38,4 @@ public class Shooting : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider t){
-		Debug.Log ("triggerd");
-		Destroy (clone);
-	}
-
 }

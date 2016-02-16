@@ -9,13 +9,15 @@ public class Enemy_1 : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		StartCoroutine (MoveEnemy());
         mainCam = GameObject.Find("Main Camera");
         Debug.Log(mainCam);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		transform.Translate (0, 0, -1 * speed * Time.deltaTime, Space.World);
+
         if (transform.position.y < 0f)
             Destroy(gameObject);
     }
@@ -45,13 +47,5 @@ public class Enemy_1 : MonoBehaviour {
             Destroy(go);
         }
     }
-
-	IEnumerator MoveEnemy(){
-
-		while (true) {
-			transform.Translate (0, 0, -1 * speed, Space.World);
-			yield return new WaitForSeconds (0.09f);
-		}
-	}
 		
 }
